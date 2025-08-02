@@ -56,7 +56,7 @@ const Aboutme = () => {
                     <div className="mt-3 flex items-center justify-center sm:justify-start gap-5">
                         <a
                             href="#contact"
-                            className="bg-[#4ba3c3] w-fit p-2 sm:p-2 sm:pl-5 sm:pr-5 rounded-2xl hover:scale-105 transform transition duration-200 cursor-pointer text-sm sm:text-base"
+                            className="bg-black text-white font-semibold w-fit p-2 sm:p-2 sm:pl-5 sm:pr-5 rounded-2xl hover:scale-105 transform transition duration-200 cursor-pointer text-sm sm:text-base"
                         >
                             HIRE ME
                         </a>
