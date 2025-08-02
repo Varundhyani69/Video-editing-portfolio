@@ -1,18 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 const Sample = () => {
     const [positionIndex, setPositionIndex] = useState([0, 1, 2, 3, 4]);
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
 
     const handleNext = () => {
-        setPositionIndex((prevIndex) => prevIndex.map((i) => (i + 1) % 5));
+        setPositionIndex((prev) => prev.map((i) => (i + 1) % 5));
     };
 
     const handlePrev = () => {
-        setPositionIndex((prevIndex) => prevIndex.map((i) => (i - 1 + 5) % 5));
+        setPositionIndex((prev) => prev.map((i) => (i - 1 + 5) % 5));
     };
 
-    // Shorts video IDs from your URLs
     const shorts = [
         "r_6TgmOli-g",
         "6vcEGIo1FXk",
@@ -33,42 +40,83 @@ const Sample = () => {
 
     return (
         <div className='bg-white/10 w-full backdrop-blur-md border border-white/20 shadow-md rounded-2xl mt-6 mb-5'>
-            <h1 className='mb-6 mt-8 text-2xl font-semibold'>REELS SHOWCASE</h1>
-            <div className='flex -mt-12 items-center w-full flex-col justify-center h-screen relative overflow-hidden'>
-                {shorts.map((id, index) => (
+            <h1 className='mb-6 mt-8 text-2xl font-semibold text-center'>REELS SHOWCASE</h1>
+
+            {!isMobile && (
+                <div className='relative w-full h-[90vh] flex items-center justify-center overflow-hidden'>
+                    {/* Navigation Buttons (tightly beside center video) */}
+                    <div className='absolute flex justify-between items-center w-[calc(270px+6rem)] h-[480px] z-10'>
+                        <button
+                            onClick={handlePrev}
+                            className='text-white bg-white/10 backdrop-blur-md border border-white/20 shadow-md rounded-full h-10 w-10 flex items-center justify-center'
+                        >
+                            <i className="fa-solid fa-arrow-left"></i>
+                        </button>
+                        <button
+                            onClick={handleNext}
+                            className='text-white bg-white/10 backdrop-blur-md border border-white/20 shadow-md rounded-full h-10 w-10 flex items-center justify-center'
+                        >
+                            <i className="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    {shorts.map((id, index) => (
+                        <motion.iframe
+                            key={id}
+                            src={`https://www.youtube.com/embed/${id}`}
+                            className='rounded-2xl'
+                            initial="center"
+                            animate={positions[positionIndex[index]]}
+                            variants={IframeVariants}
+                            transition={{ duration: 0.5 }}
+                            style={{
+                                width: '270px',
+                                height: '480px',
+                                position: 'absolute',
+                                border: 'none',
+                            }}
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                        />
+                    ))}
+                </div>
+            )}
+
+            {/* Mobile View */}
+            {isMobile && (
+                <div className='flex flex-col items-center justify-center w-full gap-4 p-4'>
                     <motion.iframe
-                        key={id}
-                        src={`https://www.youtube.com/embed/${id}`}
-                        className='rounded-2xl'
-                        initial="center"
-                        animate={positions[positionIndex[index]]}
-                        variants={IframeVariants}
+                        key={shorts[positionIndex[0]]}
+                        src={`https://www.youtube.com/embed/${shorts[positionIndex[0]]}`}
+                        className='rounded-xl'
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
                         style={{
-                            width: '40%',
-                            height: '70%',
-                            position: 'absolute',
+                            width: '100%',
+                            aspectRatio: '9 / 16',
+                            maxHeight: '480px',
                             border: 'none',
                         }}
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
                     />
-                ))}
-                <div className='z-10 flex items-center justify-center gap-55'>
-                    <button
-                        className='text-white bg-white/10 backdrop-blur-md border border-white/20 shadow-md rounded-full h-15 w-15 z-10'
-                        onClick={handlePrev}
-                    >
-                        <i className="fa-solid fa-arrow-left"></i>
-                    </button>
-                    <button
-                        className='text-white bg-white/10 backdrop-blur-md border border-white/20 shadow-md rounded-full h-15 w-15 z-10'
-                        onClick={handleNext}
-                    >
-                        <i className="fa-solid fa-arrow-right"></i>
-                    </button>
+                    <div className='flex justify-between w-full px-6 mt-2'>
+                        <button
+                            onClick={handlePrev}
+                            className='text-white bg-white/10 backdrop-blur-md border border-white/20 shadow-md rounded-full px-4 py-2'
+                        >
+                            <i className="fa-solid fa-arrow-left"></i>
+                        </button>
+                        <button
+                            onClick={handleNext}
+                            className='text-white bg-white/10 backdrop-blur-md border border-white/20 shadow-md rounded-full px-4 py-2'
+                        >
+                            <i className="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
                 </div>
-            </div>
+            )}
         </div>
     );
 };

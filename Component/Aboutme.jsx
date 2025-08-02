@@ -45,7 +45,7 @@ const Aboutme = () => {
                         </h1>
                     </div>
                     <div className="flex justify-center sm:justify-start">
-                        <p className="text-start text-xs sm:text-sm">
+                        <p className="text-center sm:text-start text-xs sm:text-sm">
                             <i>
                                 “Good editing is invisible — but unforgettable.” <br />
                                 I'm a video editor turning raw footage into scroll-stopping content since 2020.
