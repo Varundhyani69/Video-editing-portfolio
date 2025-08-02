@@ -8,6 +8,7 @@ import Navbar from '../Component/Navbar.jsx';
 import Samples from '../Component/Samples.jsx';
 import GreetingIntro from '../Component/GreetingIntro.jsx';
 import './App.css';
+import Footer from '../Component/Footer.jsx';
 
 const AnimatedSection = ({ id, children }) => {
   const ref = useRef(null);
@@ -45,6 +46,7 @@ const App = () => {
           </motion.div>
 
           <AnimatedSection id="about">
+
             <Aboutme />
           </AnimatedSection>
 
@@ -65,6 +67,10 @@ const App = () => {
               <Contactme />
             </div>
           </AnimatedSection>
+          <AnimatedSection id="footer">
+            <Footer />
+          </AnimatedSection>
+
         </div>
       )}
     </AnimatePresence>

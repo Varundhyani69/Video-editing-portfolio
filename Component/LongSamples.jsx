@@ -41,7 +41,7 @@ const LongSamples = () => {
         <div className="w-full flex justify-center items-center mt-10">
             <div className="w-full max-w-[600px] bg-white/10 backdrop-blur-md border border-white/20 shadow-md rounded-2xl py-6 px-4 sm:px-6 relative overflow-hidden">
                 <h2 className="text-black text-2xl font-semibold mb-6 text-center">
-                    Long-form Showcase
+                    LONG-FORM SHOWCASE
                 </h2>
 
                 {/* Left Arrow */}

@@ -39,8 +39,8 @@ const Sample = () => {
     };
 
     return (
-        <div className='bg-white/10 w-full backdrop-blur-md border border-white/20 shadow-md rounded-2xl mt-6 mb-5'>
-            <h1 className='mb-6 mt-8 text-2xl font-semibold text-center'>REELS SHOWCASE</h1>
+        <div className='bg-white/10 w-full backdrop-blur-md border border-white/20 shadow-md rounded-2xl mt-6 mb-5 pb-10'>
+            <h1 className='mb-6 mt-8 text-2xl font-semibold text-center'>SHORT-FORM SHOWCASE</h1>
 
             {!isMobile && (
                 <div className='relative w-full h-[90vh] flex items-center justify-center overflow-hidden'>
