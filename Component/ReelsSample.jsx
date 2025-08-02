@@ -106,13 +106,13 @@ const Sample = () => {
                             onClick={handlePrev}
                             className='text-white bg-white/10 backdrop-blur-md border border-white/20 shadow-md rounded-full px-4 py-2'
                         >
-                            <i className="fa-solid fa-arrow-left"></i>
+                            <i className="fa-solid text-black fa-arrow-left"></i>
                         </button>
                         <button
                             onClick={handleNext}
                             className='text-white bg-white/10 backdrop-blur-md border border-white/20 shadow-md rounded-full px-4 py-2'
                         >
-                            <i className="fa-solid fa-arrow-right"></i>
+                            <i className="fa-solid text-black fa-arrow-right"></i>
                         </button>
                     </div>
                 </div>
