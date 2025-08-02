@@ -17,7 +17,6 @@ const LongSamples = () => {
 
     const videos = [
         'https://www.youtube.com/embed/VNAjphOOi7A',
-        'https://www.youtube.com/embed/1yVKTd8Msm0',
         'https://www.youtube.com/embed/5S0SxZ1WAZA',
     ];
 
