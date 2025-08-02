@@ -69,10 +69,10 @@ const Testimonials = () => {
     };
 
     return (
-        <div className="w-full px-6 py-16 mt-4 text-black flex flex-col items-center">
+        <div className="w-screen px-6 py-16 mt-4 text-black flex flex-col items-center">
             <h2 className="text-3xl font-semibold mb-12">What Clients Say</h2>
 
-            <div className="relative w-full max-w-6xl flex items-center justify-center">
+            <div className="relative w-screen  flex items-center justify-center">
                 <button
                     onClick={handlePrev}
                     className="absolute left-0 bg-black/10 backdrop-blur-md border border-white/20 rounded-full p-3 text-white  z-10"

@@ -26,8 +26,8 @@ const GreetingIntro = ({ onFinish }) => {
     if (hide) return null;
 
     return (
-        <div className="fixed top-0 left-0 w-screen h-screen bg-white flex items-center justify-center z-50">
-            <h1 className="text-4xl font-bold">
+        <div className="fixed top-0 left-0 w-full h-screen bg-white flex items-center justify-center z-50">
+            <h1 className="text-2xl sm:text-4xl font-bold">
                 {greetings[index] || ''}
             </h1>
         </div>

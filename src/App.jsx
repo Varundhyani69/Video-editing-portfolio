@@ -34,12 +34,12 @@ const App = () => {
       {showIntro ? (
         <GreetingIntro onFinish={() => setShowIntro(false)} />
       ) : (
-        <div className="flex flex-col bg-[#F9F9F9] items-center justify-center text-center gap-3 mt-2 scroll-smooth">
+        <div className="flex flex-col bg-[#F9F9F9] w-max-screen   items-center justify-center text-center gap-3 mt-2 scroll-smooth">
           <motion.div
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: 'easeOut' }}
-            className='flex items-center justify-center'
+            className="flex items-center justify-center"
           >
             <Navbar />
           </motion.div>
@@ -61,7 +61,7 @@ const App = () => {
           </AnimatedSection>
 
           <AnimatedSection id="contact">
-            <div className='w-150'>
+            <div >
               <Contactme />
             </div>
           </AnimatedSection>

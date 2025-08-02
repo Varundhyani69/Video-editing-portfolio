@@ -3,7 +3,7 @@ import ReelsSample from './ReelsSample.jsx';
 import LongSamples from './LongSamples.jsx';
 const Samples = () => {
     return (
-        <div className='mt-20 w-150'>
+        <div className='mt-20 w-screen'>
             <h2 className='text-2xl font-semibold'>SAMPLES</h2>
             <div className=' flex items-center justify-center'>
                 <ReelsSample />
