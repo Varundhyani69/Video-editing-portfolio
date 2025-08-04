@@ -13,11 +13,11 @@ const Sample = () => {
     }, []);
 
     const handleNext = () => {
-        setPositionIndex((prev) => prev.map((i) => (i + 1) % 5));
+        setPositionIndex((prev) => prev.map((i) => (i + 1 + 5) % 5));
     };
 
     const handlePrev = () => {
-        setPositionIndex((prev) => prev.map((i) => (i - 1 + 5) % 5));
+        setPositionIndex((prev) => prev.map((i) => (i - 1) % 5));
     };
 
     const shorts = [
@@ -44,45 +44,50 @@ const Sample = () => {
 
             {!isMobile && (
                 <div className='relative w-full h-[90vh] flex items-center justify-center overflow-hidden'>
-                    {/* Navigation Buttons (tightly beside center video) */}
-                    <div className='absolute flex justify-between items-center w-[calc(270px+6rem)] h-[480px] z-10'>
+
+                    <div className='absolute flex justify-between items-center w-[calc(270px+6rem)] h-[480px] z-10 pointer-events-none'>
                         <button
                             onClick={handlePrev}
-                            className='text-white bg-white/10 backdrop-blur-md border border-white/20 shadow-md rounded-full h-10 w-10 flex items-center justify-center'
+                            className='text-white bg-white/10 backdrop-blur-md border border-white/20 shadow-md rounded-full h-10 w-10 flex items-center justify-center pointer-events-auto'
                         >
                             <i className="fa-solid fa-arrow-left"></i>
                         </button>
                         <button
                             onClick={handleNext}
-                            className='text-white bg-white/10 backdrop-blur-md border border-white/20 shadow-md rounded-full h-10 w-10 flex items-center justify-center'
+                            className='text-white bg-white/10 backdrop-blur-md border border-white/20 shadow-md rounded-full h-10 w-10 flex items-center justify-center pointer-events-auto'
                         >
                             <i className="fa-solid fa-arrow-right"></i>
                         </button>
                     </div>
 
-                    {shorts.map((id, index) => (
-                        <motion.iframe
-                            key={id}
-                            src={`https://www.youtube.com/embed/${id}`}
-                            className='rounded-2xl'
-                            initial="center"
-                            animate={positions[positionIndex[index]]}
-                            variants={IframeVariants}
-                            transition={{ duration: 0.5 }}
-                            style={{
-                                width: '270px',
-                                height: '480px',
-                                position: 'absolute',
-                                border: 'none',
-                            }}
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                        />
-                    ))}
+                    {shorts.map((id, index) => {
+                        const position = positions[positionIndex[index]];
+                        const isCenter = position === 'center';
+
+                        return (
+                            <motion.iframe
+                                key={id}
+                                src={`https://www.youtube.com/embed/${id}`}
+                                className='rounded-2xl'
+                                initial="center"
+                                animate={position}
+                                variants={IframeVariants}
+                                transition={{ duration: 0.5 }}
+                                style={{
+                                    width: '270px',
+                                    height: '480px',
+                                    position: 'absolute',
+                                    border: 'none',
+                                    pointerEvents: isCenter ? 'auto' : 'none',
+                                }}
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                            />
+                        );
+                    })}
                 </div>
             )}
 
-            {/* Mobile View */}
             {isMobile && (
                 <div className='flex flex-col items-center justify-center w-full gap-4 p-4'>
                     <motion.iframe
