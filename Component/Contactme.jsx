@@ -12,19 +12,20 @@ const ContactMe = () => {
         setLoading(true);
 
         emailjs.sendForm(
-            import.meta.env.S_ID,
-            import.meta.env.T_ID,
+            import.meta.env.VITE_S_ID,
+            import.meta.env.VITE_T_ID,
             form.current,
-            import.meta.env.C_ID
-        ).then(() => {
-            setSent(true);
-            setLoading(false);
-            form.current.reset();
-            setTimeout(() => setSent(false), 4000);
-        }).catch(() => {
-            setLoading(false);
-            alert("Failed to send email. Try again.");
-        });
+            import.meta.env.VITE_C_ID
+        )
+            .then(() => {
+                setSent(true);
+                setLoading(false);
+                form.current.reset();
+                setTimeout(() => setSent(false), 4000);
+            }).catch(() => {
+                setLoading(false);
+                alert("Failed to send email. Try again.");
+            });
     };
 
     return (
